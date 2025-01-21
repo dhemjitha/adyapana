@@ -267,7 +267,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-        StudentReg S = new StudentReg();
+        StudentRegistration S = new StudentRegistration();
         
         S.setVisible(true);
         S.setAlwaysOnTop(true);
