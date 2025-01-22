@@ -30,7 +30,7 @@ public class Home extends javax.swing.JFrame {
                 Vector<String> v = new Vector();
 
                 v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("f_name"));
+                v.add(resultSet.getString("f_name")+" "+resultSet.getString("l_name"));
                 v.add(resultSet.getString("mobile"));
                 v.add(resultSet.getString("email"));
                 v.add(resultSet.getString("city"));
@@ -60,7 +60,7 @@ public class Home extends javax.swing.JFrame {
                 Vector<String> v = new Vector();
 
                 v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("f_name"));
+                v.add(resultSet.getString("f_name")+" "+resultSet.getString("l_name"));
                 v.add(resultSet.getString("mobile"));
                 v.add(resultSet.getString("email"));
                 v.add(resultSet.getString("city"));
