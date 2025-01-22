@@ -165,11 +165,11 @@ public class Attendance extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
             model.setValueAt(currentDate, selectedRow, 5); // Assuming the date column is at index 5
             
-            JOptionPane.showMessageDialog(null, "Attendance marked for student ID: " + st_id , "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Attendance marked for student ID: " + st_id , "Success", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error marking attendance: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error marking attendance: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
