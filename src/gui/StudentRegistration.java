@@ -36,7 +36,6 @@ public class StudentRegistration extends javax.swing.JFrame {
                 v.add(resultSet.getString("l_name"));
                 v.add(resultSet.getString("email"));
                 v.add(resultSet.getString("mobile"));
-                v.add(resultSet.getString("dob"));
                 v.add(resultSet.getString("address"));
                 v.add(resultSet.getString("city"));
 
@@ -71,8 +70,6 @@ public class StudentRegistration extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -139,11 +136,6 @@ public class StudentRegistration extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Mobile");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Date of Birth");
-
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,8 +195,7 @@ public class StudentRegistration extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                             .addComponent(jLabel5)
                             .addComponent(jTextField4)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -214,7 +205,6 @@ public class StudentRegistration extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))))
                     .addComponent(jTextField6)
-                    .addComponent(jTextField7)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -254,10 +244,6 @@ public class StudentRegistration extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,11 +260,11 @@ public class StudentRegistration extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Stundet ID", "First Name", "Last Name", "Email", "Mobile", "Date of Birth", "Address", "City"
+                "Stundet ID", "First Name", "Last Name", "Email", "Mobile", "Address", "City"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -351,7 +337,6 @@ public class StudentRegistration extends javax.swing.JFrame {
         String addr = jTextField4.getText();
         String city = jTextField5.getText();
         String mobile = jTextField6.getText();
-        String dob = jTextField7.getText();
 
         if (fname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter first name", "Warning!!!", JOptionPane.WARNING_MESSAGE);
@@ -366,13 +351,11 @@ public class StudentRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "please enter city", "Warning!!!", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter mobile", "Warning!!!", JOptionPane.WARNING_MESSAGE);
-        } else if (dob.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Date of Bith", "Warning!!!", JOptionPane.WARNING_MESSAGE);
         } else {
 
             try {
-                MySQLClass.executeIUD("INSERT INTO `student`(`f_name`,`l_name`,`email`,`mobile`,`dob`,`address`,`city`) "
-                        + "VALUES('" + fname + "','" + lname + "','" + email + "','" + mobile + "','" + dob + "','" + addr + "','" + city + "')");
+                MySQLClass.executeIUD("INSERT INTO `student`(`f_name`,`l_name`,`email`,`mobile`,`address`,`city`) "
+                        + "VALUES('" + fname + "','" + lname + "','" + email + "','" + mobile + "','" + addr + "','" + city + "')");
                 reset();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -393,14 +376,12 @@ public class StudentRegistration extends javax.swing.JFrame {
         String addr = jTextField4.getText();
         String city = jTextField5.getText();
         String mobile = jTextField6.getText();
-        String dob = jTextField7.getText();
 
         try {
             MySQLClass.executeIUD("UPDATE `student` SET `f_name`='" + fname + "', "
                     + "`l_name`='" + lname + "', "
                     + "`email`='" + email + "', "
                     + "`mobile`='" + mobile + "', "
-                    + "`dob`='" + dob + "', "
                     + "`address`='" + addr + "', "
                     + "`city`='" + city + "' "
                     + "WHERE `id`='" + id + "'");
@@ -457,7 +438,6 @@ public class StudentRegistration extends javax.swing.JFrame {
                     jTextField4.setText(resultSet.getString("address"));
                     jTextField5.setText(resultSet.getString("city"));
                     jTextField6.setText(resultSet.getString("mobile"));
-                    jTextField7.setText(resultSet.getString("dob"));
 
                 }
 
@@ -492,7 +472,6 @@ public class StudentRegistration extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
-        jTextField7.setText("");
         loadStudents();
         jButton1.setEnabled(true);
         jButton2.setEnabled(false);
@@ -514,7 +493,6 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -527,7 +505,6 @@ public class StudentRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 
 }
